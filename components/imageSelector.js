@@ -41,10 +41,10 @@ const imageSelector = props => {
 
     return (
         <View style={styles.imageContainer}>
-        {pic==null?(<Feather name="camera" size={24} color="black" onPress={()=>takeImageHandler(props)}/>)
-        :(<ImageBackground  style={styles.picContainer}source={{uri:pic}}>
+        {pic==null?<Feather  name="camera" size={24} color="black" onPress={()=>takeImageHandler(props)}/>
+        :<ImageBackground  style={styles.picContainer}source={{uri:pic}}>
             <MaterialIcons style={{alignSelf:'flex-end',position:'absolute',top:20,right:12}} name="cancel" size={24} color='white' onPress={()=>deleteImage(props)}/>
-            </ImageBackground>)
+            </ImageBackground>
         }
         </View>
     )

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View, StyleSheet,TextInput,Button,Text} from 'react-native';
+import {View, StyleSheet,TextInput,Text} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {useSelector} from 'react-redux';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
@@ -30,19 +30,23 @@ useEffect (()=>{
     } 
      return(
          <View>
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+        <View style={{width:'100%',height:50,flexDirection:'row'}}>
         <View style={styles.inputContainer}>
-            <MaterialCommunityIcons name="text-box-search-outline" size={24} color="black" style={{padding:5,marginTop:10,}} /> 
-            <TextInput placeholder="Search" style={{width:250}}  onChangeText={searchFilterFunction} value={searchBarText} />
+            <MaterialCommunityIcons name="text-box-search-outline" size={24} color="black" style={{padding:5}} /> 
+            <TextInput style={{width:'85%'}} placeholder="Search"   onChangeText={searchFilterFunction} value={searchBarText} />
         </View>
-         <View style={styles.buttonContainer}>
-         <Button title="Cancel"  onPress={clear}/>          
-        </View>
+        <View style={styles.buttonContainer}>
+         <TouchableOpacity
+        onPress={clear}
+        style={styles.buttonContainer}>
+        <Text style={{textAlign:'center'}}maxFontSizeMultiplier={1.7} adjustsFontSizeToFit>Cancel</Text>
+       </TouchableOpacity>  
+       </View>       
         </View>
         <View>
          <FlatList data={filteredList} 
          renderItem={pointer=>
-             <TouchableOpacity onPress={()=>{ props.navigation.navigate({name:'ContactInfo',params:{
+             <TouchableOpacity testID='user-info' onPress={()=>{ props.navigation.navigate({name:'ContactInfo',params:{
                  id:pointer.item.id
              }})}}>
               <View style={styles.textContainer}>
@@ -60,20 +64,20 @@ useEffect (()=>{
 const styles = StyleSheet.create({
     inputContainer:{
         flexDirection:'row',
-        marginTop:20,
+        marginTop:10,
         marginLeft:10,
         borderWidth:1,
+        width:'75%',
+        justifyContent:'space-around'
     },
     buttonContainer:{
-        height:50,
-        width:80,
-        marginTop:30,
-        marginRight:5,
+      marginTop:10,
+      paddingLeft:5,
     },
     textContainer:{
         margin:10,
         backgroundColor:'#f0f8ff',
-        padding:15,
+        padding:15,   
     }
 });
 

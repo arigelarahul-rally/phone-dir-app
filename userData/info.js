@@ -1,4 +1,4 @@
-class Userinfo {
+class Userinfo  {
     constructor(id,name,email,phoneNo,image)
     {
         this.id=id;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector,useDispatch} from 'react-redux';
-import { View,StyleSheet,Text, Button ,Alert, Image } from 'react-native';
+import { View,StyleSheet,Text, Button ,Alert, Image ,ScrollView } from 'react-native';
 import * as deleteContact from '../store/actions/deleteContact';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -37,6 +37,7 @@ const profileInfo = props =>{
        )
    }
     return(
+        <ScrollView>
         <View>
         <View style={styles.imageContainer}>
            {image==null?<Ionicons name="person-circle-outline" size={84} color="black" />:<Image style={styles.picContainer} source={{uri:image}}/>}
@@ -47,9 +48,10 @@ const profileInfo = props =>{
          <Text testID="user-phoneNo" style={styles.inputContainer}>PhoneNo:  {phoneNo}</Text>
         </View>
         <View style={styles.buttonContainer}>
-        <Button title='Delete' onPress={()=>alertButton(props)}/>
+        <Button title="Delete"  onPress={()=>alertButton(props)}/>
         </View>
         </View>
+        </ScrollView>
     )
 }
 

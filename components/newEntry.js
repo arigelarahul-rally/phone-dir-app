@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View, StyleSheet,TextInput,Button,Text} from 'react-native';
+import {View, StyleSheet,TextInput,Button,Alert,Text} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as saveContact from '../store/actions/contactAction';
 import ImagePicker from '../components/imageSelector';
@@ -56,7 +56,7 @@ const newEntry =props => {
                 props.navigation.goBack()
                }
                else{
-                   alert("please verify the inputs given")
+                   Alert.alert("please verify the inputs given")
                }
     }
     return(
@@ -64,14 +64,14 @@ const newEntry =props => {
          <ImagePicker parentCallback={picStore}/>
          <View style={styles.infoContainer}>
          <TextInput placeholder="Name" style={styles.inputContainer} onChangeText={nameStore} value={name} />
-         {!vaildname&&<Text>please enter valid name</Text>}
+         {!vaildname&&<Text >please enter valid name</Text>}
          <TextInput placeholder="Email" style={styles.inputContainer} onChangeText={emailStore} value={email}/>
-         {!vaildemail&&<Text>please enter valid email</Text>}
+         {!vaildemail&&<Text >please enter valid email</Text>}
          <TextInput placeholder="PhoneNo" style={styles.inputContainer} onChangeText={phonenoStore} value={phoneNo} />
-         {!vaildphoneNo&&<Text>please enter valid phoneNo</Text>}
+         {!vaildphoneNo&&<Text >please enter valid phoneNo</Text>}
          <View style={styles.saveContainer}>
-             <Button title='clear' onPress={clear}/>
-         <Button title='save' onPress={()=>{InputValidation(props)}}/>
+             <Button  title='clear' onPress={clear}/>
+             <Button  title='save' onPress={()=>{InputValidation(props)}}/>
          </View>
          </View>
      </View>

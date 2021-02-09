@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, waitFor} from '@testing-library/react-native';
+import {render,fireEvent} from '@testing-library/react-native';
 import ContactInfo from '../components/profileInfo';
 import {createStore,combineReducers} from 'redux';
 import searchReducer from '../store/reducers/addContact';
@@ -11,6 +11,8 @@ const rootReducer = combineReducers({
   
   const store = createStore(rootReducer);
 
+   window.alert = jest.fn()
+
   describe('rendering the profileInfo component',()=>{
 
     it('checking whether placeholder is present', async ()=>{
@@ -21,8 +23,12 @@ const rootReducer = combineReducers({
        expect(getByTestId('user-phoneNo').props.children).toStrictEqual(['PhoneNo:  ','']);
 
     });
-    it('checking whether delete button is present',async() => {
-        const {getByRole} = render(<Provider  store={store}><ContactInfo/></Provider>);
-       await waitFor(()=> getByRole('button',{name:'Delete'}));
-    })
+
+    it('checking whether delete button is present',() => {
+        const {getByText} = render(<Provider  store={store}><ContactInfo/></Provider>);
+        fireEvent.press(getByText('Delete'));
+        expect(getByText('Delete')).toBeDefined();
+        
+    });
+    
 });

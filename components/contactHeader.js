@@ -1,32 +1,23 @@
 import React from 'react';
-import {View,StyleSheet,Text} from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import {View,Text,StyleSheet} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-const Header = (props) =>{
+
+const Header = (props) => {
          return (
-            <View style={styles.container}>
-                <Text testID="contacts" style={styles.textContainer}>Contacts</Text>
-                <AntDesign name="plus" size={24} color="black" onPress={()=>props.navigation.navigate('NewEntry')
-                } />
+            <View style={styles.headerContainer}>
+                <Text maxFontSizeMultiplier={1} adjustsFontSizeToFit>      </Text>
+                <Text testID="contacts" maxFontSizeMultiplier={2} adjustsFontSizeToFit >Contacts</Text>
+                <Ionicons testID="newContact" name="ios-add" size={28} color="black" onPress={()=>props.navigation.navigate('NewEntry')}/>
             </View>);
 }
 
 const styles = StyleSheet.create({
-    container: {
+    headerContainer:{
+        padding:10,
         flexDirection:'row',
-        paddingTop:40,
-        paddingLeft:150,
-        height:80,
-        paddingRight:15,
         alignItems:'center',
-        justifyContent:'space-between',
-        backgroundColor:'#f0f8ff',
-        elevation:10,
-    },
-    textContainer:{
-         fontSize:20,
-         color:'black',
-         fontWeight:'bold',
-    },
+        justifyContent:'space-between'
+    }
 })
 export default Header;
